@@ -25,6 +25,7 @@ class CreateDogsTable extends Migration
             $table->text("descripcion");
             $table->timestamp("created_at")->useCurrent();
             $table->timestamp("updated_at")->useCurrent();
+            $table->enum('role', ['little', 'big']);
 
         });
     }

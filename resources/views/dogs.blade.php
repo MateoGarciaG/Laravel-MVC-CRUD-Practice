@@ -58,8 +58,12 @@
 
                     <a class="btn btn-info" href="{{ route('dogs.show',$dog->id) }}">@lang("Show")</a>
 
+                    <br>
+
                     <a class="btn btn-primary" href="{{ route('dogs.edit',$dog) }}">@lang("Edit")</a>
 
+                    <br>
+                    
                     {{-- DELETE DOG --}}
                     <form method="post" action="{{ route('dogs.destroy', $dog->id) }}">
                         @method('delete')
