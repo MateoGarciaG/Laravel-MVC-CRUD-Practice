@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DogRequest;
 use App\Models\Dog;
+use Illuminate\Support\Facades\Gate;
 
 class DogController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +18,7 @@ class DogController extends Controller
     {
         $dogs = Dog::latest("updated_at")->get();
         // $dogs = Dog::get();
-        return view("dogs", compact("dogs"));
+        return view("dog.dogs", compact("dogs"));
     }
 
     /**
@@ -26,7 +28,7 @@ class DogController extends Controller
      */
     public function create()
     {
-        return view("create");
+        return view("dog.create");
 
     }
 
@@ -49,7 +51,12 @@ class DogController extends Controller
         //     "descripcion" => request("descripcion"),
         // ]);
 
+
         // Forma corta
+        if(!Gate::allows("admin")) {
+            abort(403);
+        }
+
         Dog::create(request()->all());
 
         return redirect("dogs");
@@ -64,7 +71,7 @@ class DogController extends Controller
     public function show(Dog $dog)
     {
         // $dog = Dog::findOrFail($id);
-        return view("show", compact("dog"));
+        return view("dog.show", compact("dog"));
 
     }
 
@@ -76,7 +83,7 @@ class DogController extends Controller
      */
     public function edit(Dog $dog)
     {
-        return view("edit", compact("dog"));
+        return view("dog.edit", compact("dog"));
     }
 
     /**
@@ -88,6 +95,11 @@ class DogController extends Controller
      */
     public function update(DogRequest $request, Dog $dog)
     {
+
+        if(!Gate::allows("admin")) {
+            abort(403);
+        }
+
         $dog->update([
             "nombre" => request("nombre"),
             "raza" => request("raza"),
@@ -114,6 +126,11 @@ class DogController extends Controller
      */
     public function destroy(Dog $dog)
     {
+
+        if(!Gate::allows("admin")) {
+            abort(403);
+        }
+
         $dog->delete();
 
         return redirect("dogs");

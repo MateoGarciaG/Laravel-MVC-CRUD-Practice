@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@lang("Create Dog")</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('header')
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        {{ __('Dogs') }}
+    </h2>
+@endsection
+
+@section('content')
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-md sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
     {{-- Agregar traducción a contenido html con __() --}}
     <h1>{{ __("Create Dogs") }}</h1>
     {{-- Otra forma: --}}
@@ -47,7 +51,10 @@
 
     <label>
         @lang("is it Vacunated?") <br>
-        <input type="checkbox" name="isVacunado" value="0" {{ old("isVacunado") == "0" ? "checked": ""}}  />
+
+        {{-- https://stackoverflow.com/questions/14067215/unchecked-checkbox-returning-null-value --}}
+        <input type="hidden" name="isVacunado" value="0">
+        <input type="checkbox" name="isVacunado" class="switch-input" value="1" {{ old('isVacunado') == "1" ? 'checked="checked"' : '' }}/>
 
         {{-- Usando Radio para enviar valores en vez de un bool --}}
         {{-- <label>@lang("Few")</label> <br>
@@ -101,5 +108,8 @@
     <button>@lang("Send")</button>
 </form>
 
-</body>
-</html>
+</div>
+</div>
+</div>
+</div>
+@endsection
