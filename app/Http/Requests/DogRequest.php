@@ -24,10 +24,10 @@ class DogRequest extends FormRequest
     public function rules()
     {
         return [
-            "nombre" => "required",
-            "raza" => "required",
+            "nombre" => "required|string|nullable",
+            "raza" => "required|string",
             "isVacunado" => "boolean",
-            "fecha_nacimiento" => "required",
+            "fecha_nacimiento" => "required|date",
             "edad" => "required|integer|between:0,16",
             "price" => "required|min:0|max:300",
             "tamanyo" => "required|in:little,big",

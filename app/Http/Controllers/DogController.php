@@ -38,16 +38,19 @@ class DogController extends Controller
      */
     public function store(DogRequest $request)
     {
-        Dog::create([
-            "nombre" => request("nombre"),
-            "raza" => request("raza"),
-            "isVacunado" => request("isVacunado"),
-            "fecha_nacimiento" => request("fecha_nacimiento"),
-            "edad" => request("edad"),
-            "price" => request("price"),
-            "tamanyo" => request("tamanyo"),
-            "descripcion" => request("descripcion"),
-        ]);
+        // Dog::create([
+        //     "nombre" => request("nombre"),
+        //     "raza" => request("raza"),
+        //     "isVacunado" => request("isVacunado"),
+        //     "fecha_nacimiento" => request("fecha_nacimiento"),
+        //     "edad" => request("edad"),
+        //     "price" => request("price"),
+        //     "tamanyo" => request("tamanyo"),
+        //     "descripcion" => request("descripcion"),
+        // ]);
+
+        // Forma corta
+        Dog::create(request()->all());
 
         return redirect("dogs");
     }
@@ -88,13 +91,17 @@ class DogController extends Controller
         $dog->update([
             "nombre" => request("nombre"),
             "raza" => request("raza"),
-            "isVacunado" => request("isVacunado"),
+            // Checkbox input, si no está chequeado, input:checkbox
+            // enviará un null en la request, para evitar null,
+            // coloco como valor por defecto 0
+            "isVacunado" => request("isVacunado", 0),
             "fecha_nacimiento" => request("fecha_nacimiento"),
             "edad" => request("edad"),
             "price" => request("price"),
             "tamanyo" => request("tamanyo"),
             "descripcion" => request("descripcion"),
         ]);
+
 
         return redirect("dogs");
     }

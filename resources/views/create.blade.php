@@ -8,7 +8,7 @@
 </head>
 <body>
     {{-- Agregar traducción a contenido html con __() --}}
-    <h1>{{ __("Create Dog") }}</h1>
+    <h1>{{ __("Create Dogs") }}</h1>
     {{-- Otra forma: --}}
     {{-- <h1>@lang("Create Dog")</h1> --}}
 

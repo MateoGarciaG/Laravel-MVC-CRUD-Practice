@@ -49,7 +49,9 @@
 
     <label>
         @lang("is it Vacunated?") <br>
-        <input type="checkbox" name="isVacunado" value="{{ old("isVacunado", $dog->isVacunado) }}" {{ old("isVacunado", $dog->isVacunado) != "0" ? "checked": ""}} />
+
+        <input type="checkbox" value="{{true}}" name="isVacunado" {{ old('isVacunado', $dog->isVacunado) === 'true' ? 'checked='.'"checked"' : '' }}>
+
 
         {{-- Usando Radio para enviar valores en vez de un bool --}}
         {{-- <label>@lang("Few")</label> <br>
