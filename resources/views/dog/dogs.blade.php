@@ -14,7 +14,7 @@
 
 
                     {{-- Agregar traducción a contenido html con __() --}}
-                    <h1>{{ __("Show Dogs") }}</h1>
+                    <h2>{{ __("Show Dogs") }}</h2>
                     {{-- Otra forma: --}}
                     {{-- <h1>@lang("Create Dog")</h1> --}}
 
